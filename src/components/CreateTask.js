@@ -2,12 +2,12 @@ import { useContext } from "react";
 import { useState } from "react";
 import TasksContext from "../context/tasks";
 
-function CreateTask({ task, taskFromEdit}) {
+function CreateTask({ task, taskFromEdit,onUpdate,setShow}) {
   const [title, setTitle] = useState(task ? task.title : "");
   const [date, setDate] = useState(task ? task.date : "");
   const [desc, setDesc] = useState(task ? task.desc : "");
 
-  const {editTaskById,onCreate} = useContext(TasksContext)
+  const {onCreate} = useContext(TasksContext)
 
   const handleTitleChange = (e) => {
     setTitle(e.target.value);
@@ -21,7 +21,8 @@ function CreateTask({ task, taskFromEdit}) {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (taskFromEdit) {
-      editTaskById(task.id,title,date,desc)
+      onUpdate(task.id,title,date,desc)
+      //editTaskById(task.id,title,date,desc)
     }
     else{
         onCreate(title, date, desc);
@@ -52,9 +53,12 @@ function CreateTask({ task, taskFromEdit}) {
               value={desc}
               onChange={handleDescChange}
             />
+            <div className="button-edits">
+            <button className=" task-button giveUp" onClick={() => {setShow(false)}}>Vazgeç</button>
             <button className="task-button update-button" onClick={handleSubmit}>
               Düzenle
             </button>
+            </div>
           </form>
         </div>
       ) : (

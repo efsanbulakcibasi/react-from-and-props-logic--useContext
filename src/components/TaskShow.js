@@ -24,7 +24,7 @@ function TaskShow({ task }) {
       {
       show ? 
       (
-        <CreateTask task={task} taskFromEdit={true}/>
+        <CreateTask task={task} taskFromEdit={true} onUpdate={handleSubmit} setShow={setShow}/>
       ) : 
       (
         <div>

@@ -164,3 +164,11 @@ p{
   border-radius: 3px;
   padding: 7px;
 }
+.button-edits{
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+.giveUp{
+  background-color: red;
+}
